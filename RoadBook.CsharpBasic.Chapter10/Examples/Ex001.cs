@@ -3,6 +3,7 @@ using System.Data;
 using System.Text;
 using RoadBook.CsharpBasic.Chapter10.Models;
 using RoadBook.CsharpBasic.Chapter10.Manager;
+using System.Linq;
 
 namespace RoadBook.CsharpBasic.Chapter10.Examples
 {
@@ -31,8 +32,37 @@ namespace RoadBook.CsharpBasic.Chapter10.Examples
 
             while (true)
             {
+                Console.WriteLine(sbMessage.ToString());
+                string input = Console.ReadLine();
 
+                if (input == "0")
+                {
+                    ms.Close();
+
+                    Console.WriteLine("BYT");
+                    break;
+                }
+                else
+                {
+                    string index = string.Empty;
+                    string title = string.Empty;
+                    string summary = string.Empty;
+                    string createUserNm = string.Empty;
+                    string tags = string.Empty;
+                    string createDate = string.Empty;
+
+                    StringBuilder sbSQL = new StringBuilder();
+
+                    switch (input)
+                    {
+                        case "1"://SELECT
+                            DataTable dt = ms.Select("")
+                        default:
+                            break;
+                    }
+                }
             }
+           
         }
     }
 }
