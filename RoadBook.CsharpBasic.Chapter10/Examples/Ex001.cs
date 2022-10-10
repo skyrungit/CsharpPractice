@@ -20,7 +20,19 @@ namespace RoadBook.CsharpBasic.Chapter10.Examples
             MsSqlManager ms = new MsSqlManager();
             ms.Open(dbInfo);
 
-            StringBuilder 
+            StringBuilder sbMessage = new StringBuilder();
+            sbMessage.AppendLine("******************************");
+            sbMessage.AppendLine("1. SELECT");
+            sbMessage.AppendLine("2. INSERT");
+            sbMessage.AppendLine("3. UPDATE");
+            sbMessage.AppendLine("4. DELETE");
+            sbMessage.AppendLine("5. QUIT");
+            sbMessage.AppendLine("******************************");
+
+            while (true)
+            {
+
+            }
         }
     }
 }
