@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="testdb" Class="UserDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=127.0.0.1;Initial Catalog=testdb;User ID=sa" SettingsObjectName="RoadBook.CsharpBasic.Chapter09.Properties.Settings" SettingsPropertyName="testdbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TB_GRADE" Member="TB_GRADEs">
+    <Type Name="TB_GRADE">
+      <Column Name="STUDENT_NAME" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="STUDENT_ID" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="SUBJECT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SCORE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_USER" Member="TB_USERs">
+    <Type Name="TB_USER">
+      <Column Name="ID" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="AGE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JOB" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
