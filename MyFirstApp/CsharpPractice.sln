@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstApp", "MyFirstApp.csproj", "{0C9D7651-6C69-42F3-BA20-2BE9806C2AAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustForTest", "JustForTest.csproj", "{0C9D7651-6C69-42F3-BA20-2BE9806C2AAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoadBook.CsharpBasic.Chapter01", "..\RoadBook.CsharpBasic.Chapter01\RoadBook.CsharpBasic.Chapter01.csproj", "{D6B8EC53-4100-4A16-B085-316C47231C05}"
 EndProject
