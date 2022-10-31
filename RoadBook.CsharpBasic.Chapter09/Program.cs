@@ -4,11 +4,11 @@
     {
         static void Main(string[] args)
         {
-            //Examples.Ex021 ex = new Examples.Ex021();
-            //ex.Run();
+            Examples.Ex020 ex = new Examples.Ex020();
+            ex.Run();
 
-            Works.Exam005 wk = new Works.Exam005();
-            wk.Run();
+            //Works.Exam005 wk = new Works.Exam005();
+            //wk.Run();
         }
     }
 }

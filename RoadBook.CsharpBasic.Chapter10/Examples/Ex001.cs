@@ -5,6 +5,7 @@ using RoadBook.CsharpBasic.Chapter10.Models;
 using RoadBook.CsharpBasic.Chapter10.Manager;
 using System.Linq;
 using Microsoft.SqlServer.Server;
+using System.Data.SqlTypes;
 
 namespace RoadBook.CsharpBasic.Chapter10.Examples
 {
@@ -14,7 +15,7 @@ namespace RoadBook.CsharpBasic.Chapter10.Examples
         {
 
             DatabaseInfo dbInfo = new DatabaseInfo();
-            dbInfo.Name = "RoadbookPractice";
+            dbInfo.Name = "RoadbookDB"; // Data Base Name
             dbInfo.Ip = "127.0.0.1";
             dbInfo.Port = 1433;
             dbInfo.UserId = "sa";
@@ -29,7 +30,7 @@ namespace RoadBook.CsharpBasic.Chapter10.Examples
             sbMessage.AppendLine("2. INSERT");
             sbMessage.AppendLine("3. UPDATE");
             sbMessage.AppendLine("4. DELETE");
-            sbMessage.AppendLine("5. QUIT");
+            sbMessage.AppendLine("0. QUIT");
             sbMessage.AppendLine("******************************");
 
             while (true)
@@ -58,7 +59,7 @@ namespace RoadBook.CsharpBasic.Chapter10.Examples
                     switch (input)
                     {
                         case "1"://SELECT
-                            DataTable dt = ms.Select("SELECT IDX, TITLE, SUMMARY, CREATE_DT, CREATE,USER,NM, TAGS, LIKE_CNT, CATEGORY_IDX, FROM TB_CONTENTS");
+                            DataTable dt = ms.Select("SELECT IDX, TITLE, SMMARY, CREATE_DT, CREATE_USER_NM, TAGS, LIKE_CNT, CATEGORY_IDX FROM TB_CONTENTS");
                             if (dt.Rows.Count > 0)
                             {
                                 string[] columns = new string[dt.Columns.Count];
@@ -66,7 +67,7 @@ namespace RoadBook.CsharpBasic.Chapter10.Examples
                                 {
                                     columns[idx] = dt.Columns[idx].ToString();
 
-                                    Console.WriteLine(dt.Columns[idx] + "\t");
+                                    Console.Write(dt.Columns[idx] + "\t");
                                 }
 
                                 Console.WriteLine();
@@ -75,9 +76,8 @@ namespace RoadBook.CsharpBasic.Chapter10.Examples
                                 {
                                     for (int idx_j = 0; idx_j < dt.Columns.Count; idx_j++)
                                     {
-                                        Console.WriteLine(dt.Rows[idx][columns[idx_j]] + "\t");
+                                        Console.Write(dt.Rows[idx][columns[idx_j]] + "\t");
                                     }
-
                                     Console.WriteLine();
                                 }
                             }
@@ -87,9 +87,59 @@ namespace RoadBook.CsharpBasic.Chapter10.Examples
                             }
 
                             break;
-                        case "2":
+                        case "2"://INSERT
+                            Console.Write("TITLE : ");
+                            title = Console.ReadLine();
+                            Console.Write("SUMMARY : ");
+                            summary = Console.ReadLine();
+                            Console.Write("CREATE_USER_NM : ");
+                            createUserNm = Console.ReadLine();
+                            Console.Write("TAGS : ");
+                            tags = Console.ReadLine();
+
+                            createDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+                            sbSQL.Append(" INSERT TB_CONTENTS ( TITLE, SMMARY, CREATE_DT, CREATE_USER_NM, TAGS, CATEGORY_IDX ) ");
+                            sbSQL.Append(string.Format(" VALUES( '{0}', '{1}', '{2}', '{3}', '{4}', '{5}' )", title, summary, createDate, createUserNm, tags, 2));
+
+                            ms.Insert(sbSQL.ToString());
+
+                            break;
+
+                        case "3"://UPDATE
+                           /* ms.Open(dbInfo);*/ //이거 없어도 되나?
+
+                            Console.Write("Changed IDX : ");
+                            index = Console.ReadLine();
+                            Console.Write("TITLE : ");
+                            title = Console.ReadLine();
+                            Console.Write("SUMMARY : ");
+                            summary = Console.ReadLine();
+
+                            sbSQL.Append(" UPDATE TB_CONTENTS SET ");
+                            sbSQL.Append(String.Format(" TITLE = '{0}', SMMARY = '{1}' ", title, summary));
+
+                            sbSQL.Append(string.Format(" WHERE IDX = {0} ", index));
+
+                            ms.Update(sbSQL.ToString());
+
+                            break;
+
+                        case "4"://DELETE
+                            //ms.Open(dbInfo);
+
+                            Console.Write("DELETED IDX : ");
+                            index = Console.ReadLine();
+
+                            sbSQL.Append(" DELETE FROM TB_CONTENTS ");
+                            sbSQL.Append(string.Format(" WHERE IDX = '{0}' ", index));
+
+                            ms.Delete(sbSQL.ToString());
+
+                            break;
 
                         default:
+                            Console.WriteLine("Invalid.");
                             break;
                     }
                 }

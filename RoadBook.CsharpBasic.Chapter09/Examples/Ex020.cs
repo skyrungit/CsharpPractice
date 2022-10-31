@@ -24,11 +24,11 @@ namespace RoadBook.CsharpBasic.Chapter09.Examples
 
             var groups = from s in students
                          group s by s.Major into grp
-                         select new { Major = grp.Key, Count = grp.Count() };
+                         select new { QueryMajor = grp.Key, QueryCount = grp.Count() };
 
             foreach (var group in groups)
             {
-                Console.WriteLine("{0} : {1}", group.Major, group.Count);
+                Console.WriteLine("{0} : {1}", group.QueryMajor, group.QueryCount);
             }
         }
     }
